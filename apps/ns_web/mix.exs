@@ -50,7 +50,8 @@ defmodule NsWeb.MixProject do
       {:gettext, "~> 0.20"},
       {:ns, in_umbrella: true},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true}
     ]
   end
 

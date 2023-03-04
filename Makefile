@@ -14,13 +14,12 @@ DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 # ----------------------------------
 
 PRETTIER_FILES_PATTERN = \
-'{js,css,scripts}/**/*.{js,graphql,scss,css}' \
-'../*.md' '../*.config.{js,json}' \
-'../.github/**/*.{yml,yaml}' \
-'../assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' \
-'../apps/*/*.md' \
-'../apps/*/assets/{js,css,scripts}/**/*.{js,graphql,scss,css}'
-STYLES_PATTERN = 'css'
+'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' \
+'apps/*/assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' \
+'.github/**/*.{yml,yaml}' \
+'*.md' 'apps/*/*.md' \
+'*.config.{js,json}' 'assets/*.config.{js,json}'
+STYLES_PATTERN = 'assets/css'
 
 # Introspection targets
 # ---------------------
@@ -103,12 +102,12 @@ check-dependencies-security:
 
 .PHONY: check-code-security
 check-code-security:
-	mix sobelow
+	cd apps/ns_web && mix sobelow
 
 .PHONY: check-format
 check-format:
 	mix format --check-formatted
-	cd assets && npx prettier --check $(PRETTIER_FILES_PATTERN)
+	npx --prefix assets prettier --check $(PRETTIER_FILES_PATTERN) --plugin-search-dir assets
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -121,8 +120,8 @@ check-static-typing:
 .PHONY: format
 format: ## Format source files
 	mix format
-	npx --prefix assets prettier --write $(PRETTIER_FILES_PATTERN)
-	npx --prefix assets stylelint $(STYLES_PATTERN) --fix --quiet
+	npx --prefix assets prettier --write $(PRETTIER_FILES_PATTERN) --plugin-search-dir assets
+	npx --prefix assets stylelint $(STYLES_PATTERN) --fix --quiet --config-basedir assets
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint source files
@@ -134,8 +133,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	npx --prefix assets eslint --config .eslintrc.json ../
+	npx --prefix assets eslint --config .eslintrc.json --resolve-plugins-relative-to assets .
 
 .PHONY: lint-styles
 lint-styles:
-	npx --prefix assets stylelint $(STYLES_PATTERN)
+	npx --prefix assets stylelint $(STYLES_PATTERN) --config-basedir assets

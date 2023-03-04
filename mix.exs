@@ -60,7 +60,6 @@ defmodule Ns.Umbrella.MixProject do
       {:credo_naming, "~> 2.0", only: [:dev, :test], runtime: false},
 
       # Security check
-      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
 
       # Test factories
