@@ -76,7 +76,7 @@ defmodule Ns.Umbrella.MixProject do
 
   defp dialyzer do
     [
-      plt_file: {:no_warn, "priv/plts/elixir_boilerplate.plt"},
+      plt_file: {:no_warn, "priv/plts/ns_umbrella.plt"},
       plt_add_apps: [:mix, :ex_unit]
     ]
   end
