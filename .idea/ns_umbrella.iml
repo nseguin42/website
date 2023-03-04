@@ -121,5 +121,35 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="plug_canonical_host" level="project" />
+    <orderEntry type="library" name="corsica" level="project" />
+    <orderEntry type="library" name="phoenix_ecto" level="project" />
+    <orderEntry type="library" name="absinthe" level="project" />
+    <orderEntry type="library" name="absinthe_plug" level="project" />
+    <orderEntry type="library" name="dataloader" level="project" />
+    <orderEntry type="library" name="absinthe_error_payload" level="project" />
+    <orderEntry type="library" name="sentry" level="project" />
+    <orderEntry type="library" name="new_relic_agent" level="project" />
+    <orderEntry type="library" name="new_relic_absinthe" level="project" />
+    <orderEntry type="library" name="credo_envvar" level="project" />
+    <orderEntry type="library" name="credo_naming" level="project" />
+    <orderEntry type="library" name="sobelow" level="project" />
+    <orderEntry type="library" name="mix_audit" level="project" />
+    <orderEntry type="library" name="plug_checkup" level="project" />
+    <orderEntry type="library" name="ex_machina" level="project" />
+    <orderEntry type="library" name="faker" level="project" />
+    <orderEntry type="library" name="earmark_parser" level="project" />
+    <orderEntry type="library" name="bypass" level="project" />
+    <orderEntry type="library" name="redix" level="project" />
+    <orderEntry type="library" name="bunt" level="project" />
+    <orderEntry type="library" name="inch_ex" level="project" />
+    <orderEntry type="library" name="yaml_elixir" level="project" />
+    <orderEntry type="library" name="ex_json_schema" level="project" />
+    <orderEntry type="library" name="meck" level="project" />
+    <orderEntry type="library" name="mock" level="project" />
+    <orderEntry type="library" name="sax_map" level="project" />
+    <orderEntry type="library" name="saxy" level="project" />
+    <orderEntry type="library" name="erlex" level="project" />
+    <orderEntry type="library" name="yamerl" level="project" />
   </component>
 </module>
