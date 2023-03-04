@@ -14,15 +14,16 @@ concurrency:
 
 jobs:
   ci:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     services:
       db:
         image: postgres:14
         env:
+          POSTGRES_USER: postgres
           POSTGRES_DB: elixir
           POSTGRES_PASSWORD: development
-        ports: ['5436:5432']
+        ports: [ '5436:5432' ]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     env:
@@ -37,8 +38,6 @@ jobs:
           version-file: .tool-versions
           version-type: strict
 
-        env:
-          ImageOS: ubuntu22
 
       - uses: actions/cache@v3
         with:
