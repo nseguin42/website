@@ -167,3 +167,8 @@ _checkouts/
 /config/*.secret.exs
 .elixir_ls/
 
+
+### Manual additions
+# Ignore .env files
+.env
+.env.*.local
