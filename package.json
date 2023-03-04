@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "web-umbrella",
+  "author": "Nick Seguin",
+  "repository": {
+    "type": "git",
+    "url": "https://https://github.com/nseguin42/ns_umbrella"
+  },
+  "bugs": {
+    "url": "https://https://github.com/nseguin42/ns_umbrella/issues"
+  },
+  "license": "MIT",
+  "private": true,
+  "engine-strict": true,
+  "engines": {
+    "node": "^19.5.0",
+    "npm": "^9.5.1"
+  }
+}
