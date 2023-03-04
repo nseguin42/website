@@ -23,7 +23,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_DB: elixir
           POSTGRES_PASSWORD: development
-        ports: [ '5436:5432' ]
+        ports: ['5436:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     env:
@@ -37,7 +37,6 @@ jobs:
         with:
           version-file: .tool-versions
           version-type: strict
-
 
       - uses: actions/cache@v3
         with:
