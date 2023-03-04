@@ -121,8 +121,8 @@ check-static-typing:
 .PHONY: format
 format: ## Format source files
 	mix format
-	cd assets && npx prettier --write $(PRETTIER_FILES_PATTERN)
-	cd assets && npx stylelint $(STYLES_PATTERN) --fix --quiet
+	npx --prefix assets prettier --write $(PRETTIER_FILES_PATTERN)
+	npx --prefix assets stylelint $(STYLES_PATTERN) --fix --quiet
 
 .PHONY: lint
 lint: lint-elixir lint-scripts lint-styles ## Lint source files
@@ -134,8 +134,8 @@ lint-elixir:
 
 .PHONY: lint-scripts
 lint-scripts:
-	cd assets && npx eslint --config .eslintrc.json ../
+	npx --prefix assets eslint --config .eslintrc.json ../
 
 .PHONY: lint-styles
 lint-styles:
-	cd assets && npx stylelint $(STYLES_PATTERN)
+	npx --prefix assets stylelint $(STYLES_PATTERN)
