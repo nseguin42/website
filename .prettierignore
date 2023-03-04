@@ -1,0 +1,5 @@
+deps/
+_build/
+.elixir_ls
+priv
+package-lock.json
