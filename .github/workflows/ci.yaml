@@ -61,7 +61,7 @@ jobs:
       - run: make lint
       - run: make test
       - run: make build DOCKER_IMAGE_TAG=latest
-      - run: make docker-save
+      - run: make docker-save DOCKER_IMAGE_TAG=latest
 
       - uses: actions/upload-artifact@v3
         with:
