@@ -63,7 +63,8 @@ jobs:
       - run: make build DOCKER_IMAGE_TAG=latest
       - run: make docker-save DOCKER_IMAGE_TAG=latest
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload image
+        uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          name: docker-image
-          path: ./*.tar
+          image: 'ns_umbrella:latest'
+          retention_days: '7'
