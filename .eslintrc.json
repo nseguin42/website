@@ -7,10 +7,6 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "mirego"
-  ],
-  "extends": [
-    "plugin:mirego/recommended"
-  ]
+  "plugins": ["mirego"],
+  "extends": ["plugin:mirego/recommended"]
 }

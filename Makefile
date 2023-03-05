@@ -14,12 +14,6 @@ DOCKER_FILENAME:= $(APP_NAME)-$(DOCKER_IMAGE_TAG)
 # Linter and formatter configuration
 # ----------------------------------
 
-PRETTIER_FILES_PATTERN = \
-'assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' \
-'apps/*/assets/{js,css,scripts}/**/*.{js,graphql,scss,css}' \
-'.github/**/*.{yml,yaml}' \
-'*.md' 'apps/*/*.md' \
-'*.config.{js,json}' 'assets/*.config.{js,json}'
 STYLES_PATTERN = 'assets/css'
 
 # Introspection targets
@@ -112,7 +106,7 @@ check-code-security:
 .PHONY: check-format
 check-format:
 	mix format --check-formatted
-	npx --prefix assets prettier --check $(PRETTIER_FILES_PATTERN) --plugin-search-dir assets
+	npx --prefix assets prettier --check . --plugin-search-dir assets
 
 .PHONY: check-unused-dependencies
 check-unused-dependencies:
@@ -125,7 +119,7 @@ check-static-typing:
 .PHONY: format
 format: ## Format source files
 	mix format
-	npx --prefix assets prettier --write $(PRETTIER_FILES_PATTERN) --plugin-search-dir assets
+	npx --prefix assets prettier --write --plugin-search-dir assets .
 	npx --prefix assets stylelint $(STYLES_PATTERN) --fix --quiet --config-basedir assets
 
 .PHONY: lint
