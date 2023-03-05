@@ -37,5 +37,8 @@
   "workspaces": [
     "../apps/*/assets",
     "../"
-  ]
+  ],
+  "scripts": {
+    "deploy": "cd ../apps/ns_web && mix assets.deploy && rm -f _build/esbuild*"
+  }
 }

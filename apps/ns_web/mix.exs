@@ -51,7 +51,8 @@ defmodule NsWeb.MixProject do
       {:ns, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true}
+      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
+      {:plug_content_security_policy, "~> 0.1.0"}
     ]
   end
 

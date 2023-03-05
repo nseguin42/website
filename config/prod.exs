@@ -21,3 +21,16 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+config :plug_content_security_policy,
+  nonces_for: [:script_src, :style_src],
+  report_only: false,
+  directives: %{
+    default_src: ~w('self'),
+    connect_src: ~w('self'),
+    child_src: ~w('self'),
+    img_src: ~w('self' data:),
+    script_src: ~w('strict-dynamic' 'self' 'unsafe-eval' 'unsafe-inline'),
+    style_src: ~w('self'),
+    frame_ancestors: ["'self'", "http://nsegu.in", "https://nsegu.in"]
+  }

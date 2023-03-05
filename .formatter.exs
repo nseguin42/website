@@ -1,6 +1,9 @@
 [
   plugins: [Phoenix.LiveView.HTMLFormatter],
-  inputs: ["mix.exs", "config/*.exs"],
-  subdirectories: ["apps/*"],
+  inputs: [
+    "*.{ex,exs,heex}",
+    "{config,lib,test}/**/*.{ex,exs,heex}",
+    "apps/*/{config,lib,test}/**/*.{ex,exs,heex}"
+  ],
   line_length: 100
 ]

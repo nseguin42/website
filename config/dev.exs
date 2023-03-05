@@ -77,3 +77,15 @@ config :swoosh, :api_client, false
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :plug_content_security_policy,
+  nonces_for: [:script_src, :style_src],
+  report_only: false,
+  directives: %{
+    default_src: ~w('self'),
+    connect_src: ~w('self'),
+    child_src: ~w('self'),
+    img_src: ~w('self' data:),
+    script_src: ~w('strict-dynamic' 'self' 'unsafe-eval' 'unsafe-inline'),
+    style_src: ~w('self')
+  }
