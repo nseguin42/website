@@ -65,7 +65,8 @@ jobs:
 
       - name: Upload image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: ishworkh/docker-image-artifact-upload@v1
+        uses: actions/upload-artifact@v2
         with:
-          image: 'ns_umbrella:latest'
-          retention_days: '7'
+          name: docker-image
+          path: |
+            *.tar
