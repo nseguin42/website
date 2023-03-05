@@ -64,6 +64,7 @@ jobs:
       - run: make docker-save DOCKER_IMAGE_TAG=latest
 
       - name: Upload image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
           image: 'ns_umbrella:latest'
