@@ -31,3 +31,16 @@ config :swoosh, :api_client, false
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :plug_content_security_policy,
+  nonces_for: [:script_src, :style_src],
+  report_only: false,
+  directives: %{
+    default_src: ~w('self'),
+    connect_src: ~w('self'),
+    child_src: ~w('self'),
+    img_src: ~w('self' data:),
+    script_src: ~w('strict-dynamic' 'self' 'unsafe-eval' 'unsafe-inline'),
+    style_src: ~w('self'),
+    frame_ancestors: ["'self'", "http://nsegu.in", "https://nsegu.in"]
+  }

@@ -8,6 +8,7 @@ defmodule NsWeb.Router do
     plug(:put_root_layout, {NsWeb.Layouts, :root})
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(PlugContentSecurityPolicy)
   end
 
   pipeline :api do
