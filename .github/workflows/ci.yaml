@@ -58,3 +58,9 @@ jobs:
       - run: make lint
       - run: make test
       - run: make build DOCKER_IMAGE_TAG=latest
+      - run: make docker-save
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: ./*.tar

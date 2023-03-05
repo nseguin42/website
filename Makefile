@@ -8,6 +8,7 @@ DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 DOCKER_REGISTRY ?=
 DOCKER_LOCAL_IMAGE:= $(APP_NAME):$(DOCKER_IMAGE_TAG)
 DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
+DOCKER_FILENAME:= $(APP_NAME)-$(DOCKER_IMAGE_TAG)
 
 
 # Linter and formatter configuration
@@ -64,6 +65,10 @@ prepare:
 .PHONY: build
 build: ## Build a Docker image for the OTP release
 	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) .
+
+.PHONY: docker-save
+docker-save: ## Save the Docker image to a tar file
+	docker save $(DOCKER_LOCAL_IMAGE) -o $(DOCKER_FILENAME).tar
 
 .PHONY: push
 push: ## Push the Docker image to the registry
