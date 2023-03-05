@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "ns-umbrella",
+  "author": "nseguin42",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nseguin42/ns_umbrella",
+    "branch": "main"
+  },
+  "license": "MIT",
+  "description": "An Elixir umbrella project for my personal web apps.",
+  "engines": {
+    "node": "^19.5.0",
+    "npm": "^9.5.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "esbuild": "^0.17.11",
+    "eslint": "^8.35.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-mirego": "^1.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.4",
+    "stylelint": "^14.16.1",
+    "stylelint-config-mirego": "^2.1.0",
+    "stylelint-order": "^6.0.2",
+    "stylelint-scss": "^4.4.0"
+  },
+  "dependencies": {
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "tailwindcss": "^3.2.7"
+  },
+  "workspaces": [
+    "../apps/*/assets",
+    "../"
+  ]
+}

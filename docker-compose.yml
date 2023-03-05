@@ -1,0 +1,23 @@
+services:
+  application:
+    image: ns_umbrella:latest
+    container_name: ns_umbrella
+    env_file: .env.dev.local
+    environment:
+      - DATABASE_URL=postgres://postgres:development@postgresql/elixir
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgresql
+  postgresql:
+    image: postgres:14-bullseye
+    container_name: ns_umbrella-postgres
+    environment:
+      - POSTGRES_DB=elixir
+      - POSTGRES_PASSWORD=development
+    ports:
+      - 5434:5432
+    volumes:
+      - ns_umbrella_psql:/var/lib/postgresql/data
+volumes:
+  ns_umbrella_psql:

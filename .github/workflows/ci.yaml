@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:14
+        env:
+          POSTGRES_DB: ns_umbrella
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MIX_ENV: test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: erlef/setup-beam@v1
+        id: setup-beam
+        with:
+          version-file: .tool-versions
+          version-type: strict
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            deps
+            _build
+            priv/plts
+          key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .tool-versions
+          cache: npm
+
+      - run: grep -v '^\(#.*\|\s\?\)$' .env.test >> $GITHUB_ENV
+
+      - run: make prepare
+      - run: make check
+      - run: make lint
+      - run: make test
+      - run: make build DOCKER_IMAGE_TAG=latest
+      - run: make docker-save DOCKER_IMAGE_TAG=latest
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: ./*.tar
