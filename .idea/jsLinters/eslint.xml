@@ -2,6 +2,7 @@
 <project version="4">
   <component name="EslintConfiguration">
     <work-dir-patterns value="$PROJECT_DIR$/assets" />
+    <custom-configuration-file used="true" path="$PROJECT_DIR$/.eslintrc.json" />
     <extra-options value="--config .eslintrc.json --resolve-plugins-relative-to assets" />
     <option name="fix-on-save" value="true" />
   </component>
