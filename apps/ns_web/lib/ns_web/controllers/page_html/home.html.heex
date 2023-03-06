@@ -23,7 +23,7 @@
     <h1 class="mt-10 flex items-center text-sm font-semibold leading-6 text-brand">
       <a href={@repo_url}>@nseguin42/website</a>
       <small class="ml-3 rounded-full bg-brand/5 px-2 text-[0.8125rem] font-medium leading-6">
-        <a data-commit={Mix.Project.config()[:sha]}>
+        <a>
           v<%= "#{Application.spec(:ns_web, :vsn)}" %>
         </a>
       </small>
