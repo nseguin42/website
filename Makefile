@@ -58,7 +58,7 @@ prepare:
 
 .PHONY: build
 build: ## Build a Docker image for the OTP release
-	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . SHA=$(GIT_REVISION)
+	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . --build-arg SHA=$(GIT_REVISION)
 
 .PHONY: docker-save
 docker-save: ## Save the Docker image to a tar file
