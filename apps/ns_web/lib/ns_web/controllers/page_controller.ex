@@ -2,7 +2,6 @@ defmodule NsWeb.PageController do
   use NsWeb, :controller
 
   def home(conn, _params) do
-    commit = get_commit()
     # The home page is often custom made,
     # so skip the default app layout.
     render(conn, :home,
