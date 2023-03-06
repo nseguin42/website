@@ -32,6 +32,24 @@ const topbarShowDelayMs = 300;
 window.addEventListener('phx:page-loading-start', (_info) => topbar.show(topbarShowDelayMs));
 window.addEventListener('phx:page-loading-stop', (_info) => topbar.hide());
 
+import * as github from './github';
+const urlElements = document.getElementsByClassName('github-url');
+for (let i = 0; i < urlElements.length; i++) {
+  const urlElement = urlElements[i];
+  const commit = urlElement.dataset.commit;
+  const url = github.getGithubUrl('nseguin42', 'website', commit);
+  urlElement.setAttribute('href', url);
+}
+
+const messageElements = document.getElementsByClassName('github-commit-message');
+for (let i = 0; i < messageElements.length; i++) {
+  const messageElement = messageElements[i];
+  const commit = messageElement.dataset.commit;
+  github.getCommitMessage('nseguin42', 'website', commit).then((message) => {
+    messageElement.textContent = message;
+  });
+}
+
 // connect if there are any LiveViews on the page
 liveSocket.connect();
 

@@ -1,4 +1,7 @@
 {
   "name": "ns-web",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@octokit/core": "^4.2.0"
+  }
 }
