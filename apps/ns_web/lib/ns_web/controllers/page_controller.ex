@@ -7,9 +7,6 @@ defmodule NsWeb.PageController do
     # so skip the default app layout.
     render(conn, :home,
       layout: false,
-      commit_sha: get_sha(commit),
-      commit_message: get_message(commit),
-      commit_url: get_url(commit),
       repo_url: "https://github.com/nseguin42/website" |> URI.encode()
     )
   end
