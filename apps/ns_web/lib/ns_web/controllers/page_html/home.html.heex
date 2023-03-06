@@ -23,7 +23,7 @@
     <h1 class="mt-10 flex items-center text-sm font-semibold leading-6 text-brand">
       <a href="https://github.com/nseguin42/website">@nseguin42/website</a>
       <small class="ml-3 rounded-full bg-brand/5 px-2 text-[0.8125rem] font-medium leading-6">
-        v<%= Application.spec(:ns_web, :vsn) %>
+        v<%= "#{Application.spec(:ns_web, :vsn)}-#{Mix.Project.config()[:sha] |> String.slice(0..9)}" %>
       </small>
     </h1>
     <p class="mt-4 text-[2rem] font-semibold leading-10 tracking-tighter text-nord-1">
