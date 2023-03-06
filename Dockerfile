@@ -21,6 +21,8 @@ ARG DEBIAN_VERSION=bullseye-20221004-slim
 ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
 ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
+ARG SHA
+
 FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
@@ -98,6 +100,8 @@ ENV MIX_ENV="prod"
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/ns_umbrella ./
 
 USER nobody
+
+LABEL sha=$VERSION
 
 # CMD ["/app/bin/server"]
 ENTRYPOINT [ "/app/bin/ns_umbrella", "start" ]
