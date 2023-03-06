@@ -36,4 +36,4 @@ jobs:
           cache: npm
 
       - run: make prepare
-      - run: make build push DOCKER_IMAGE_TAG=latest
+      - run: make build push
