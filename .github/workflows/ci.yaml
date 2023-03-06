@@ -60,8 +60,8 @@ jobs:
       - run: make check
       - run: make lint
       - run: make test
-      - run: make build DOCKER_IMAGE_TAG=latest
-      - run: make docker-save DOCKER_IMAGE_TAG=latest
+      - run: make build
+      - run: make docker-save
 
       - name: Upload image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

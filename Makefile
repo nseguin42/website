@@ -4,8 +4,8 @@
 APP_NAME := $(shell pwd | xargs basename)
 APP_VERSION := $(shell grep -Eo 'version: "[0-9\.]*"' mix.exs | cut -d '"' -f 2)
 GIT_REVISION := $(shell git rev-parse HEAD)
-DOCKER_IMAGE_TAG ?= $(APP_VERSION)
-DOCKER_REGISTRY ?= nseguin42
+DOCKER_IMAGE_TAG := $(APP_VERSION)
+DOCKER_REGISTRY := nseguin42
 DOCKER_LOCAL_IMAGE:= $(APP_NAME):$(DOCKER_IMAGE_TAG)
 DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
 DOCKER_FILENAME:= $(APP_NAME)-$(DOCKER_IMAGE_TAG)
@@ -67,6 +67,7 @@ docker-save: ## Save the Docker image to a tar file
 .PHONY: push
 push: ## Push the Docker image to the registry
 	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REMOTE_IMAGE)
+	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REGISTRY)/$(APP_NAME):latest
 	docker push $(DOCKER_REMOTE_IMAGE)
 
 # Development targets
