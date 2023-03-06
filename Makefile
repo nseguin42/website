@@ -4,7 +4,7 @@
 APP_NAME := $(shell pwd | xargs basename)
 APP_VERSION := $(shell grep -Eo 'version: "[0-9\.]*"' mix.exs | cut -d '"' -f 2)
 GIT_REVISION := $(shell git rev-parse HEAD)
-DOCKER_IMAGE_TAG := $(APP_VERSION)
+DOCKER_IMAGE_TAG := latest
 DOCKER_REGISTRY := nseguin42
 DOCKER_LOCAL_IMAGE:= $(APP_NAME):$(DOCKER_IMAGE_TAG)
 DOCKER_REMOTE_IMAGE:= $(DOCKER_REGISTRY)/$(DOCKER_LOCAL_IMAGE)
