@@ -62,7 +62,7 @@ build: ## Build a Docker image for the OTP release
 
 .PHONY: docker-save
 docker-save: ## Save the Docker image to a tar file
-	docker save $(DOCKER_LOCAL_IMAGE) -o $(DOCKER_FILENAME).tar
+	docker save $(DOCKER_LOCAL_IMAGE) -o $(APP_NAME).tar
 
 # Development targets
 # -------------------
