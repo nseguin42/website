@@ -83,9 +83,10 @@ config :plug_content_security_policy,
   report_only: false,
   directives: %{
     default_src: ~w('self'),
-    connect_src: ~w('self'),
+    connect_src: ~w('self' https://api.github.com),
     child_src: ~w('self'),
+    font_src: ~w('self'),
     img_src: ~w('self' data:),
-    script_src: ~w('strict-dynamic' 'self' 'unsafe-eval' 'unsafe-inline'),
-    style_src: ~w('self')
+    script_src: ~w('strict-dynamic' 'unsafe-eval' 'unsafe-inline'),
+    style_src: ~w('self' 'unsafe-inline')
   }

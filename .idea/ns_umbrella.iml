@@ -152,5 +152,6 @@
     <orderEntry type="library" name="saxy" level="project" />
     <orderEntry type="library" name="erlex" level="project" />
     <orderEntry type="library" name="yamerl" level="project" />
+    <orderEntry type="library" name="jquery-3.6.3.slim" level="application" />
   </component>
 </module>
