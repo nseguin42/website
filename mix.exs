@@ -109,15 +109,19 @@ defmodule Ns.Umbrella.MixProject do
       {:error, _} ->
         case System.cmd("git", ~w|show -s --format=%H|) do
           {sha, 0} -> sha
-          _ -> "unknown"
+          _ -> nil
         end
     end
   end
 
   def get_commit(owner, repo, sha) do
-    case System.cmd("curl", ["-s", "https://api.github.com/repos/#{owner}/#{repo}/commits/#{sha}"]) do
-      {commit, 0} -> commit
-      _ -> "unknown"
+    if sha == nil do
+      nil
+    else
+      case System.cmd("curl", ["-s", "https://api.github.com/repos/#{owner}/#{repo}/commits/#{sha}"]) do
+        {commit, 0} -> commit
+        _ -> nil
+      end
     end
   end
 end
