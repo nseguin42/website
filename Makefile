@@ -68,7 +68,7 @@ docker-save: ## Save the Docker image to a tar file
 push: ## Push the Docker image to the registry
 	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REMOTE_IMAGE)
 	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REGISTRY)/$(APP_NAME):latest
-	docker push --all-tags $APP_NAME
+	docker push --all-tags $(APP_NAME)
 
 # Development targets
 # -------------------
