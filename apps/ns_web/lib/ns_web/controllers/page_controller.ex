@@ -14,8 +14,8 @@ defmodule NsWeb.PageController do
         |> List.first()
         |> String.slice(0..50)
         |> String.trim(),
-      commit_url: commit["html_url"],
-      repo_url: "https://github.com/nseguin42/website"
+      commit_url: commit["html_url"] |> URI.encode(),
+      repo_url: "https://github.com/nseguin42/website" |> URI.encode()
     )
   end
 
