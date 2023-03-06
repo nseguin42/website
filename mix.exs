@@ -115,12 +115,9 @@ defmodule Ns.Umbrella.MixProject do
   end
 
   def get_commit(owner, repo, sha) do
-    case elem(
-           System.cmd("curl", ["-s", "https://api.github.com/repos/#{owner}/#{repo}/commits/#{sha}"]),
-           0
-         ) do
-      "" -> "unknown"
-      commit -> commit
+    case System.cmd("curl", ["-s", "https://api.github.com/repos/#{owner}/#{repo}/commits/#{sha}"]) do
+      {commit, 0} -> commit
+      _ -> "unknown"
     end
   end
 end
