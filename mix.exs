@@ -108,7 +108,7 @@ defmodule Ns.Umbrella.MixProject do
       # Try getting the sha from the git repo directly
       {:error, _} ->
         case System.cmd("git", ~w|show -s --format=%H|) do
-          {sha, 0} -> sha
+          {sha, 0} -> String.trim(sha)
           _ -> nil
         end
     end
