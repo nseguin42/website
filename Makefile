@@ -64,12 +64,6 @@ build: ## Build a Docker image for the OTP release
 docker-save: ## Save the Docker image to a tar file
 	docker save $(DOCKER_LOCAL_IMAGE) -o $(DOCKER_FILENAME).tar
 
-.PHONY: push
-push: ## Push the Docker image to the registry
-	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REMOTE_IMAGE)
-	docker tag $(DOCKER_LOCAL_IMAGE) $(DOCKER_REGISTRY)/$(APP_NAME):latest
-	docker push --all-tags $(DOCKER_REGISTRY)/$(APP_NAME)
-
 # Development targets
 # -------------------
 
