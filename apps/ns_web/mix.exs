@@ -23,7 +23,8 @@ defmodule NsWeb.MixProject do
   def application do
     [
       mod: {NsWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools],
+      env: [sha: get_sha()]
     ]
   end
 
@@ -52,7 +53,8 @@ defmodule NsWeb.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
-      {:plug_content_security_policy, "~> 0.2.1"}
+      {:plug_content_security_policy, "~> 0.2.1"},
+      {:httpoison, "~> 2.0.0"}
     ]
   end
 
@@ -67,5 +69,10 @@ defmodule NsWeb.MixProject do
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
+  end
+
+  defp get_sha() do
+    path = Path.join(__DIR__, "priv/static/sha.txt")
+    File.read!(path)
   end
 end

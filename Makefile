@@ -58,11 +58,6 @@ prepare:
 
 .PHONY: build
 build: ## Build a Docker image for the OTP release
-	git log \
-		--pretty=format:'{%n  "commit": "%H",%n  "author": "%aN <%aE>",%n  "date": "%ad",%n  "message": "%f"%n},' \
-		$@ | \
-		perl -pe 'BEGIN{print "["}; END{print "]\n"}' | \
-		perl -pe 's/},]/}]/' > gitlog.json
 	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . --build-arg SHA=$(GIT_REVISION)
 
 .PHONY: docker-save

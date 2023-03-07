@@ -103,6 +103,7 @@ USER nobody
 
 LABEL sha=$SHA
 RUN echo $SHA > sha.txt
+RUN cp sha.txt /app/_build/${MIX_ENV}/rel/ns_umbrella/apps/ns_web/priv/static/sha.txt
 
 # CMD ["/app/bin/server"]
 ENTRYPOINT [ "/app/bin/ns_umbrella", "start" ]

@@ -11,7 +11,9 @@ defmodule NsWeb.Application do
       # Start the Telemetry supervisor
       NsWeb.Telemetry,
       # Start the Endpoint (http/https)
-      NsWeb.Endpoint
+      NsWeb.Endpoint,
+      {NsWeb.GitHubClient, []}
+
       # Start a worker by calling: NsWeb.Worker.start_link(arg)
       # {NsWeb.Worker, arg}
     ]
