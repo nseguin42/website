@@ -72,7 +72,7 @@ defmodule NsWeb.MixProject do
   end
 
   defp get_sha() do
-    path = Path.join(__DIR__, "priv/static/sha.txt")
+    path = Path.join(__DIR__, "../../sha.txt")
     File.read!(path)
   end
 end
