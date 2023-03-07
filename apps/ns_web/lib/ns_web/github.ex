@@ -90,8 +90,4 @@ defmodule NsWeb.GitHubClient do
   defp get_repo_url(owner, repo) do
     "https://github.com/#{owner}/#{repo}"
   end
-
-  defp get_commit_url(owner, repo, sha) do
-    "https://github.com/repos/#{owner}/#{repo}/commits/#{sha}"
-  end
 end
