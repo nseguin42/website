@@ -53,7 +53,7 @@ targets:
 
 .PHONY: prepare
 prepare:
-	echo $(GIT_REVISION) > sha.txt
+	echo $(GIT_REVISION) > apps/ns_web/priv/static/sha.txt
 	mix deps.get
 	npm ci --prefix assets
 
