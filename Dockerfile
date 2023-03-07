@@ -102,7 +102,6 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/ns_umbrella .
 USER nobody
 
 LABEL sha=$SHA
-RUN echo $SHA > sha.txt
 RUN cp sha.txt /app/_build/${MIX_ENV}/rel/ns_umbrella/apps/ns_web/priv/static/sha.txt
 
 # CMD ["/app/bin/server"]
