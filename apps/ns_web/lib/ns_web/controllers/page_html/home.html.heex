@@ -21,14 +21,16 @@
       />
     </svg>
     <h1 class="mt-10 flex items-center text-sm font-semibold leading-6 text-brand">
-      <a href={@repo_url}>@nseguin42/website</a>
+      <a href={GenServer.call(NsWeb.GitHubClient, :get_repo_url)}>@nseguin42/website</a>
       <small class="ml-3 rounded-full bg-brand/5 px-2 text-[0.8125rem] font-medium leading-6">
-        <a>
-          v<%= "#{Application.spec(:ns_web, :vsn)}" %>
+        <a href={GenServer.call(NsWeb.GitHubClient, :get_commit_url)}>
+          v<%= "#{Application.spec(:ns_web, :vsn)}-#{GenServer.call(NsWeb.GitHubClient, :get_short_sha)}" %>
         </a>
       </small>
     </h1>
-    <code class="mt-4 text-sm font-small leading-6 text-nord_gray-900"></code>
+    <code class="mt-4 text-sm font-small leading-6 text-nord_gray-900">
+      <%= GenServer.call(NsWeb.GitHubClient, :get_commit_message) %>
+    </code>
     <p class="mt-4 text-[2rem] font-semibold leading-10 tracking-tighter text-nord-1">
       Nick Seguin
     </p>

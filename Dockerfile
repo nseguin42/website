@@ -31,6 +31,8 @@ RUN apt-get update -y && apt-get install -y build-essential git npm \
 
 # prepare build dir
 WORKDIR /app
+RUN echo $(SHA) > /app/sha.txt
+
 
 # install hex + rebar
 RUN mix local.hex --force && \
@@ -102,7 +104,6 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/ns_umbrella .
 USER nobody
 
 LABEL sha=$SHA
-RUN echo $SHA > sha.txt
 
 # CMD ["/app/bin/server"]
 ENTRYPOINT [ "/app/bin/ns_umbrella", "start" ]
