@@ -29,7 +29,7 @@ defmodule NsWeb.Router do
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:ns_web, :dev_routes) do
-    import Logger
+    require Logger
     Logger.info("Enabling dev routes")
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.

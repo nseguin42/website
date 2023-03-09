@@ -41,7 +41,7 @@ defmodule Ns.Version do
   Gets the most recent commits, up to a limit.
   """
 
-  def get_commits_since(days, limit) do
+  def get_recent_commits(limit) do
     Repo.all(
       from(c in Commit,
         order_by: [desc: c.timestamp],

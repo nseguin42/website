@@ -2,7 +2,7 @@ defmodule NsWeb.PageController do
   use NsWeb, :controller
 
   def home(conn, _params) do
-    recent_commits = Ns.Version.get_commits_since(7, 3)
+    recent_commits = Ns.Version.get_recent_commits(3)
 
     data = %{
       commit: recent_commits |> Enum.at(0),

@@ -41,10 +41,9 @@ defmodule NsWeb.CommitController do
     end
   end
 
-  def get_commits_since(conn, %{"days" => days, "limit" => limit}) do
-    days = String.to_integer(days)
+  def get_commits_since(conn, %{"limit" => limit}) do
     limit = String.to_integer(limit)
-    commits = Version.get_commits_since(days, limit)
+    commits = Version.get_recent_commits(limit)
     render(conn, :index, commits: commits)
   end
 end
