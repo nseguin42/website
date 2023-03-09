@@ -21,6 +21,12 @@ defmodule NsWeb.Router do
     get("/", PageController, :home)
   end
 
+  scope "/api", NsWeb do
+    pipe_through(:api)
+
+    get("/sha", PageController, :sha)
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", NsWeb do
   #   pipe_through :api
