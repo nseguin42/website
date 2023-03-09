@@ -3,9 +3,10 @@ defmodule NsWeb.PageController do
 
   def home(conn, _params) do
     recent_commits = Ns.Version.get_recent_commits(3)
+    publish_commit = NsWeb.GitHubClient.get_publish_commit()
 
     data = %{
-      commit: recent_commits |> Enum.at(0),
+      commit: publish_commit,
       commits: recent_commits
     }
 
