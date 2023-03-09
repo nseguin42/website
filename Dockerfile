@@ -105,8 +105,6 @@ USER nobody
 
 LABEL sha=$SHA
 
-# Run migrations
-RUN /app/bin/ns_umbrella eval "NsWeb.Release.migrate"
-
 # CMD ["/app/bin/server"]
-ENTRYPOINT [ "/app/bin/ns_umbrella", "start" ]
+# Run migrations and start the server
+ENTRYPOINT [ "/app/bin/ns_umbrella", "eval", "NsUmbrella.Release.migrate", "&&", "/app/bin/ns_umbrella", "start" ]
