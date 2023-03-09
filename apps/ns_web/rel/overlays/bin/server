@@ -3,4 +3,4 @@ cd -P -- "$(dirname -- "$0")"
 
 # Always run migrations
 ./ns_web migrate
-PHX_SERVER=true exec ./ns_web start
+PHX_SERVER=true exec ./ns_umbrella start
