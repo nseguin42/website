@@ -71,8 +71,6 @@ docker-save: ## Save the Docker image to a tar file
 .PHONY: run
 run: ## Run the server in an IEx shell
 	iex -S mix phx.server
-	## run migrations
-	mix ecto.migrate
 
 .PHONY: dependencies
 dependencies: ## Install hex and npm dependencies

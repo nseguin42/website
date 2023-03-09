@@ -105,8 +105,5 @@ USER nobody
 
 LABEL sha=$SHA
 
-# Run migrations
-RUN /app/bin/migrate
-
 # CMD ["/app/bin/server"]
 ENTRYPOINT [ "/app/bin/ns_umbrella", "start" ]
