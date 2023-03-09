@@ -8,7 +8,7 @@ defmodule Ns.VersionTest do
 
     import Ns.VersionFixtures
 
-    @invalid_attrs %{author: nil, message: nil, sha: nil, timestamp: nil}
+    @invalid_attrs %{author: nil, message: nil, sha: nil, timestamp: nil, url: nil}
 
     test "list_commits/0 returns all commits" do
       commit = commit_fixture()
@@ -25,7 +25,8 @@ defmodule Ns.VersionTest do
         author: "some author",
         message: "some message",
         sha: "some sha",
-        timestamp: ~N[2023-03-08 01:44:00]
+        timestamp: ~N[2023-03-08 01:44:00],
+        url: "http://example.com"
       }
 
       assert {:ok, %Commit{} = commit} = Version.create_commit(valid_attrs)
@@ -33,6 +34,7 @@ defmodule Ns.VersionTest do
       assert commit.message == "some message"
       assert commit.sha == "some sha"
       assert commit.timestamp == ~N[2023-03-08 01:44:00]
+      assert commit.url == "http://example.com"
     end
 
     test "create_commit/1 with invalid data returns error changeset" do
@@ -46,7 +48,8 @@ defmodule Ns.VersionTest do
         author: "some updated author",
         message: "some updated message",
         sha: "some updated sha",
-        timestamp: ~N[2023-03-09 01:44:00]
+        timestamp: ~N[2023-03-09 01:44:00],
+        url: "http://example.com"
       }
 
       assert {:ok, %Commit{} = commit} = Version.update_commit(commit, update_attrs)
@@ -54,6 +57,7 @@ defmodule Ns.VersionTest do
       assert commit.message == "some updated message"
       assert commit.sha == "some updated sha"
       assert commit.timestamp == ~N[2023-03-09 01:44:00]
+      assert commit.url == "http://example.com"
     end
 
     test "update_commit/2 with invalid data returns error changeset" do

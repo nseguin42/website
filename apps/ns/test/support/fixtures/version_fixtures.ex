@@ -14,7 +14,8 @@ defmodule Ns.VersionFixtures do
         author: "some author",
         message: "some message",
         sha: "some sha",
-        timestamp: ~N[2023-03-08 01:44:00]
+        timestamp: ~N[2023-03-08 01:44:00],
+        url: "http://example.com"
       })
       |> Ns.Version.create_commit()
 
