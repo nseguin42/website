@@ -21,13 +21,16 @@ defmodule NsWeb.Router do
     get("/", PageController, :home)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", NsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", NsWeb do
+    pipe_through(:api)
+
+    resources("/commits", CommitController, except: [:new, :edit])
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:ns_web, :dev_routes) do
+    require Logger
+    Logger.info("Enabling dev routes")
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
     # If your application does not have an admins-only section yet,

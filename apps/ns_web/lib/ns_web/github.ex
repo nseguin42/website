@@ -87,6 +87,27 @@ defmodule NsWeb.GitHubClient do
     end
   end
 
+  def get_publish_commit() do
+    case HTTPoison.get("https://api.github.com/repos/nseguin42/website/commits") do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        githubCommit =
+          body
+          |> Jason.decode!()
+          |> List.first()
+          |> Map.get("commit")
+
+        %{
+          message: githubCommit["message"],
+          sha: githubCommit["tree"]["sha"],
+          url: githubCommit["html_url"],
+          author: githubCommit["author"]["name"]
+        }
+
+      _ ->
+        nil
+    end
+  end
+
   defp get_repo_url(owner, repo) do
     "https://github.com/#{owner}/#{repo}"
   end

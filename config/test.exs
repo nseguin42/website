@@ -41,6 +41,5 @@ config :plug_content_security_policy,
     child_src: ~w('self'),
     img_src: ~w('self' data:),
     script_src: ~w('strict-dynamic' 'self' 'unsafe-eval' 'unsafe-inline'),
-    style_src: ~w('self'),
-    frame_ancestors: ["'self'", "http://nsegu.in", "https://nsegu.in"]
+    style_src: ~w('self')
   }

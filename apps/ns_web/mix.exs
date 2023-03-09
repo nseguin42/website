@@ -23,8 +23,7 @@ defmodule NsWeb.MixProject do
   def application do
     [
       mod: {NsWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools],
-      env: [sha: get_sha()]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -69,10 +68,5 @@ defmodule NsWeb.MixProject do
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
-  end
-
-  defp get_sha() do
-    path = Path.join(__DIR__, "../../sha.txt")
-    File.read!(path)
   end
 end
