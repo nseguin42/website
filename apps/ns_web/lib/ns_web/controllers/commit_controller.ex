@@ -41,25 +41,10 @@ defmodule NsWeb.CommitController do
     end
   end
 
-  defp convert_from_github_json(json) do
-    %{
-      "sha" => sha,
-      "commit" => %{
-        "author" => %{
-          "name" => author,
-          "date" => timestamp
-        },
-        "message" => message
-      },
-      "html_url" => url
-    } = json
-
-    %{
-      "sha" => sha,
-      "author" => author,
-      "timestamp" => timestamp,
-      "message" => message,
-      "url" => url
-    }
+  def get_commits_since(conn, %{"days" => days, "limit" => limit}) do
+    days = String.to_integer(days)
+    limit = String.to_integer(limit)
+    commits = Version.get_commits_since(days, limit)
+    render(conn, :index, commits: commits)
   end
 end

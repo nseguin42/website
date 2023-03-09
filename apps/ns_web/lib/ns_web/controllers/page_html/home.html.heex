@@ -21,16 +21,14 @@
       />
     </svg>
     <h1 class="mt-10 flex items-center text-sm font-semibold leading-6 text-brand">
-      <a href="">@nseguin42/website</a>
+      <a href="https://github.com/nseguin42/website">@nseguin42/website</a>
       <small class="ml-3 rounded-full bg-brand/5 px-2 text-[0.8125rem] font-medium leading-6">
         <a href={@data.commit.url}>
           v<%= "#{Application.spec(:ns_web, :vsn)}-#{@data.commit.sha |> String.slice(0..6)}" %>
         </a>
       </small>
     </h1>
-    <code class="mt-4 text-sm font-small leading-6 text-nord_gray-900">
-      <%= @data.commit.message |> String.split("\n") |> Enum.at(0) %>
-    </code>
+
     <p class="mt-4 text-[2rem] font-semibold leading-10 tracking-tighter text-nord-1">
       Nick Seguin
     </p>
@@ -82,5 +80,11 @@
         </div>
       </div>
     </div>
+    <%= if !Enum.empty?(@data.commits) do %>
+      <div id="commits" class="mt-20">
+        <NsWeb.GitComponents.commits_panel commits={@data.commits}>
+        </NsWeb.GitComponents.commits_panel>
+      </div>
+    <% end %>
   </div>
 </div>

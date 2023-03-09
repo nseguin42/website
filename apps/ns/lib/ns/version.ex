@@ -38,6 +38,19 @@ defmodule Ns.Version do
   def get_commit!(id), do: Repo.get!(Commit, id)
 
   @doc """
+  Gets the most recent commits, up to a limit.
+  """
+
+  def get_commits_since(days, limit) do
+    Repo.all(
+      from(c in Commit,
+        order_by: [desc: c.timestamp],
+        limit: ^limit
+      )
+    )
+  end
+
+  @doc """
   Creates a commit.
 
   ## Examples
