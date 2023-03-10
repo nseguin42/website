@@ -17,7 +17,8 @@ defmodule Ns.Umbrella.MixProject do
           applications: [
             ns: :permanent,
             ns_web: :permanent
-          ]
+          ],
+          overlays: "apps/ns_web/rel/overlays"
         ]
       ]
     ]
