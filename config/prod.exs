@@ -46,7 +46,6 @@ config :plug_content_security_policy,
       "'self'",
       "http://nsegu.in",
       "https://nsegu.in",
-      "http://nseguin.dev",
       "https://nseguin.dev"
     ]
   }
