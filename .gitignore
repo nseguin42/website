@@ -172,3 +172,4 @@ _checkouts/
 # Ignore .env files
 .env
 .env.*.local
+docker-compose-prod.yml
