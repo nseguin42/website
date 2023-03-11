@@ -35,6 +35,18 @@ if config_env() == :prod do
       """
 
   config :ns_web, NsWeb.Endpoint,
+    url: [host: "nseguin.dev"],
+    cache_static_manifest: "priv/static/cache_manifest.json",
+    https: [
+      port: 443,
+      cipher_suite: :strong,
+      otp_app: :ns_web,
+      keyfile: System.fetch_env!("SSL_KEY_PATH"),
+      certfile: System.fetch_env!("SSL_CERT_PATH"),
+      cacertfile: System.fetch_env!("SSL_CA_CERT_PATH")
+    ]
+
+  config :ns_web, NsWeb.Endpoint,
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

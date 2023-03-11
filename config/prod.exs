@@ -12,7 +12,7 @@ import Config
 config :ns_web, NsWeb.Endpoint,
   url: [host: "nseguin.dev"],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  http: [port: 80],
+
   https: [
     port: 443,
     cipher_suite: :strong,
