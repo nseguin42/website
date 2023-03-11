@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :ns_web, NsWeb.Endpoint,
-  url: [host: "nseguin.dev", port: 80],
+  url: [host: "nseguin.dev", port: 4000],
   cache_static_manifest: "priv/static/cache_manifest.json",
   https: [
     port: 443,
