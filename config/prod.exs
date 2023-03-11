@@ -10,8 +10,15 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :ns_web, NsWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "nseguin.dev", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  https: [
+    port: 443,
+    otp_app: :ns_web,
+    keyfile: "/etc/letsencrypt/live/nseguin.dev/privkey.pem",
+    certfile: "/etc/letsencrypt/live/nseguin.dev/fullchain.pem",
+    force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil]
+  ]
 
 # Configures Swoosh API Client
 config :swoosh, :api_client, Ns.Finch
