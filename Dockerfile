@@ -25,6 +25,10 @@ ARG SHA
 
 FROM ${BUILDER_IMAGE} as builder
 
+ENV SSL_KEY_PATH=/etc/certs/privkey.pem
+ENV SSL_CERT_PATH=/etc/certs/fullchain.pem
+ENV SSL_CA_CERT_PATH=/etc/certs/chain.pem
+
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git npm \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
