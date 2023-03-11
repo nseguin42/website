@@ -12,9 +12,9 @@ import Config
 config :ns_web, NsWeb.Endpoint,
   url: [host: "nseguin.dev"],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  http: [port: System.fetch_env!("HTTP_PORT")],
+  http: [port: 80],
   https: [
-    port: System.fetch_env!("HTTPS_PORT"),
+    port: 443,
     cipher_suite: :strong,
     otp_app: :ns_web,
     keyfile: System.fetch_env!("SSL_KEY_PATH"),
