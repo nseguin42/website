@@ -17,7 +17,7 @@ config :ns_web, NsWeb.Endpoint,
     otp_app: :ns_web,
     keyfile: "/etc/letsencrypt/live/nseguin.dev/privkey.pem",
     certfile: "/etc/letsencrypt/live/nseguin.dev/fullchain.pem",
-    force_ssl: [rewrite_on: [:x_forwarded_host, :x_forwarded_port, :x_forwarded_proto]]
+    force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil]
   ]
 
 # Configures Swoosh API Client
