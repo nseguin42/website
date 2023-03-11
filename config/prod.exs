@@ -17,9 +17,9 @@ config :ns_web, NsWeb.Endpoint,
     port: 4040,
     cipher_suite: :strong,
     otp_app: :ns_web,
-    keyfile: System.get_env("SSL_KEY_PATH"),
-    certfile: System.get_env("SSL_CERT_PATH"),
-    cacertfile: System.get_env("SSL_CA_CERT_PATH"),
+    keyfile: System.fetch_env!("SSL_KEY_PATH"),
+    certfile: System.fetch_env!("SSL_CERT_PATH"),
+    cacertfile: System.fetch_env!("SSL_CA_CERT_PATH"),
     force_ssl: [rewrite_on: [:x_forwarded_host, :x_forwarded_proto]]
   ]
 
