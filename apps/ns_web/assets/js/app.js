@@ -18,7 +18,7 @@
 // Add syntax highlighting in code blocks.
 import Prism from '../vendor/prism.js';
 
-Prism.plugins.autoloader.languages_path = '/prism-components/';
+Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/';
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import 'phoenix_html';
