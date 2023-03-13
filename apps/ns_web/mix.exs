@@ -53,7 +53,7 @@ defmodule NsWeb.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:sobelow, "~> 0.11", only: [:dev, :test], runtime: true},
       {:plug_content_security_policy, "~> 0.2.1"},
-      {:httpoison, "~> 2.0.0"},
+      {:httpoison, "~> 2.1.0"},
       {:earmark, "~> 1.4.37"}
     ]
   end
