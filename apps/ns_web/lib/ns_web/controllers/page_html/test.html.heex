@@ -1,0 +1,81 @@
+<% markdown = ~S"""
+# Markdown + LaTeX + EEx
+
+This page is written with a combination of markdown, LaTeX, and Elixir's EEx template engine.
+This particular block is written in Markdown:
+    - It
+    - supports
+    - lists
+and **bold** and *italic* text. Here's the markdown that generated this block:
+""" %>
+
+<% latex = ~S"""
+And this is a block of \LaTeX. I can write inline math equations: $x^2 + y^2 = z^2$, and display equations:
+\[
+    \int_1^x \frac{1}{t}\ \mathrm{d}t = \ln |x|, \quad x > 0
+\]
+Here's the LaTeX that generated this block:
+""" %>
+
+<% elixir = ~s"""
+\<% markdown = \~S\"\"\"
+# Markdown + LaTeX + EEx
+
+This page is written with a combination of markdown, LaTeX, and Elixir's EEx template engine.
+This particular block is written in Markdown:
+    - It
+    - supports
+    - lists
+and **bold** and *italic* text. Here's the markdown that generated this block:
+\"\"\" %\>
+
+\<% latex = \~S\"\"\"
+And this is a block of \\LaTeX. I can write inline math equations: $x^2 + y^2 = z^2$, and display equations:
+\\[
+    \\int_1^x \\frac{1}{t}\\ \\mathrm{d}t = \\ln |x|, \\quad x \\> 0
+\\]
+Here's the LaTeX that generated this block:
+\"\"\" %\>
+
+\<% elixir = \~s\"\"\"
+[error: stack overflow]
+\"\"\" %\>
+
+<div class="flex flex-col">
+  \<div\>
+    \<%= markdown |\> NsWeb.Markdown.as_html() |\> raw %\>
+  \</div\>
+  \<div\>
+    \<pre\>\<code class="lang-markdown"\>\<%= markdown %\>\</code\>\</pre\>
+  \</div\>
+  \<div style="border: 1px solid black; padding: 1em; margin: 1em;"\>
+    \<%= latex |\> NsWeb.LaTeX.as_html() |\> raw %\>
+  \</div\>
+  \<div\>
+    \<pre\>\<code class="lang-latex"\>\<%= latex %\>\</code\>\</pre\>
+  \</div\>
+  Finally, here's the HEEx (HTML + Elixir) code that generated this whole page.
+  \<div\>
+    \<pre\>\<code class="lang-elixir"\>\<%= elixir %\>\</code\>\</pre\>
+  \</div\>
+</div>
+""" %>
+
+<div class="flex flex-col">
+  <div>
+    <%= markdown |> NsWeb.Markdown.as_html() |> raw %>
+  </div>
+  <div>
+    <pre><code class="lang-markdown"><%= markdown %></code></pre>
+  </div>
+  <div style="border: 1px solid black; padding: 1em; margin: 1em;">
+    <%= latex |> NsWeb.LaTeX.as_html() |> raw %>
+  </div>
+  <div>
+    <pre><code class="lang-latex"><%= latex %></code></pre>
+  </div>
+  Finally, here's the HEEx (HTML + Elixir) code that generated this whole page.
+  <div>
+    <pre><code class="lang-elixir"><%= elixir %></code></pre>
+  </div>
+</div>
