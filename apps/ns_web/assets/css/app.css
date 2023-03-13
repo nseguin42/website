@@ -13,3 +13,39 @@
 #nav-bar > a:hover {
   color: #636f88;
 }
+
+h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
