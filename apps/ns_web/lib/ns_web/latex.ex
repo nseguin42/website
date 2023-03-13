@@ -7,10 +7,16 @@ defmodule NsWeb.LaTeX do
   Converts the given LaTeX string to HTML.
   """
   def as_html(string) do
-    string
-    |> to_inline_tex()
-    |> write_tex_to_tmp()
-    |> convert_tex_to_html("latex/inline.css")
+    tmp_dir = setup_tmp_dir("inline")
+
+    html =
+      string
+      |> to_inline_tex()
+      |> write_tex_to_tmp(tmp_dir)
+      |> convert_tex_to_html("latex/inline.css")
+
+    teardown_tmp_dir(tmp_dir)
+    html
   end
 
   @doc """
@@ -63,8 +69,7 @@ defmodule NsWeb.LaTeX do
     end
   end
 
-  defp write_tex_to_tmp(string) do
-    tmp_dir = setup_tmp_dir("inline")
+  defp write_tex_to_tmp(string, tmp_dir) do
     path = Path.join(tmp_dir, "tmp.tex")
     File.write!(path, string)
     path
