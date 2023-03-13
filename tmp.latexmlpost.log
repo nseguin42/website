@@ -1,0 +1,16 @@
+latexmlpost (LaTeXML version 0.8.7) paginating /tmp/ns_web/latex/tmp.tex-FF4654D9/tmp.xml
+(post-processing...
+(Scan index.html processing...
+Scan: DBStatus: 10/0 objects
+ 0.00 sec)
+(CrossRef index.html processing... 0.00 sec)
+(MathML::Presentation index.html 2 to process...
+converted 2 Maths
+ 0.00 sec)
+(XSLT[using LaTeXML-html5.xsl] index.html processing...
+Warning:missing_file:latex/inline.css Couldn't find resource file latex/inline.css in paths /home/kogasa/git/ns/ns_umbrella,/tmp/ns_web/latex/inline-B963D575,.,.,/home/kogasa/git/ns/ns_umbrella,/tmp/ns_web/latex/inline-B963D575,.
+	at Post::XSLT[@0x55bc6670eb70]
+	In Post::XSLT[@0x55bc6670eb70] ->copyResource
+ 0.00 sec)
+(Writer index.html processing... 0.00 sec) 0.01 sec)
+Postprocessing complete 1 warning (See /home/kogasa/git/ns/ns_umbrella/tmp.latexmlpost.log) (reqd. 0.09s)
