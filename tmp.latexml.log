@@ -1,10 +1,32 @@
 (Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/TeX.pool.ltxml...
 (Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/eTeX.pool.ltxml... 0.00 sec)
-(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/pdfTeX.pool.ltxml... 0.00 sec) 0.07 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/pdfTeX.pool.ltxml... 0.00 sec) 0.06 sec)
 latexmlc (LaTeXML version 0.8.7)
-invoked as [/sbin/latexmlc /tmp/ns_web/latex/inline-5EBCA3AE/tmp.tex --destination=/tmp/ns_web/latex/tmp.tex-350F6AE1/tmp.xml --quiet --nocomments]
-processing started Sun Mar 12 23:38:47 2023
+invoked as [/sbin/latexmlc /tmp/ns_web/latex/inline-B963D575/tmp.tex --destination=/tmp/ns_web/latex/tmp.tex-FF4654D9/tmp.xml --quiet --nocomments]
+processing started Mon Mar 13 00:08:44 2023
 (Digesting TeX tmp...
-(Processing content /tmp/ns_web/latex/inline-5EBCA3AE/tmp.tex...
+(Processing content /tmp/ns_web/latex/inline-B963D575/tmp.tex...
 (Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/LaTeX.pool.ltxml...
 (Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/textcomp.sty.ltxml...
+(Processing definitions /opt/texlive/2022/texmf-dist/tex/latex-dev/base/ts1enc.dfu... 0.01 sec) 0.47 sec) 0.56 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/article.cls.ltxml... 0.00 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/amsmath.sty.ltxml...
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/amsbsy.sty.ltxml...
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/amsgen.sty.ltxml... 0.00 sec) 0.00 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/amstext.sty.ltxml... 0.00 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/amsopn.sty.ltxml... 0.00 sec) 0.02 sec)
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/graphicx.sty.ltxml...
+(Loading /usr/share/perl5/vendor_perl/LaTeXML/Package/graphics.sty.ltxml... 0.00 sec) 0.01 sec) 0.62 sec) 0.62 sec)
+(Building...
+(Loading compiled schema /usr/share/perl5/vendor_perl/LaTeXML/resources/RelaxNG/LaTeXML.model... 0.00 sec) 0.03 sec)
+(Rewriting... 0.00 sec)
+(Math Parsing 2 formulae ...... 0.02 sec)
+Math parsing succeeded:
+   ltx:XMath: 2/2
+   ltx:XMArg: 10/10
+Symbols assumed as simple identifiers (with # of occurences):
+   'd' (1), 't{italic}' (1), 'x{italic}' (1)
+Set MATHPARSER_SPECULATE to speculate on possible notations.
+(Finalizing... 0.00 sec)
+Conversion complete: No obvious problems
+Status:conversion:0
