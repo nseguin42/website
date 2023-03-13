@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   ci:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     services:
       db:
@@ -38,8 +38,6 @@ jobs:
 
       - uses: erlef/setup-beam@v1
         id: setup-beam
-        env:
-          ImageOS: ubuntu20
         with:
           version-file: .tool-versions
           version-type: strict
