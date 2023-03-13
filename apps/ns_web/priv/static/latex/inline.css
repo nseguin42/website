@@ -1,0 +1,29 @@
+@import 'base.css';
+
+.ltx_page_content {
+    margin: auto auto -2.5em auto;
+    font-size: 1rem;
+    clear: both;
+}
+
+.ltx_page_footer {
+    visibility: hidden;
+}
+
+.ltx_document {
+    margin: auto;
+}
+
+.ltx_p {
+    line-height: 1rem;
+}
+
+.ltx_equation,
+.ltx_eqn,
+.ltx_eqn_align,
+.ltx_eqn_div,
+.ltx_eqn_table,
+.ltx_para,
+.ltx_p {
+    margin: 0;
+}

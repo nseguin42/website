@@ -41,7 +41,7 @@ config :esbuild,
   version: "0.14.41",
   default: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/* --external:/prism-components/* --external:/latex/*),
     cd: Path.expand("../apps/ns_web/assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -65,6 +65,22 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Support Markdown template engine
+config :phoenix, :template_engines, md: NsWeb.Markdown.Engine
+
+# Support LaTeX template engine
+config :phoenix, :template_engines, tex: NsWeb.LaTeX.Engine
+
+config :ns_web, :markdown, %{
+  class: "prose m-auto",
+  earmark: %{
+    gfm: true,
+    breaks: true,
+    smartypants: false,
+    code_class_prefix: "lang-"
+  }
+}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -15,6 +15,11 @@
 //     import "some-package"
 //
 
+// Add syntax highlighting in code blocks.
+import Prism from '../vendor/prism.js';
+
+Prism.plugins.autoloader.languages_path = '/prism-components/';
+
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import 'phoenix_html';
 // Establish Phoenix Socket and LiveView configuration.

@@ -3,3 +3,13 @@
 @import 'tailwindcss/utilities';
 
 /* This file is for your main application CSS */
+
+@import 'prism-nord.css';
+
+#nav-bar > a {
+  color: #d8dee9;
+}
+
+#nav-bar > a:hover {
+  color: #636f88;
+}
