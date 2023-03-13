@@ -19,6 +19,11 @@ defmodule NsWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    # get("/about", PageController, :about)
+    # get("/contact", PageController, :contact)
+    # get("/resume", PageController, :resume)
+    get("/test", PageController, :test)
+    # get("/latex", PageController, :latex)
   end
 
   scope "/api", NsWeb do
