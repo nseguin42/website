@@ -36,11 +36,11 @@ config :plug_content_security_policy,
   nonces_for: [:script_src, :style_src],
   report_only: false,
   directives: %{
-    default_src: ~w('self'),
+    default_src: ~w('self' cdn.jsdelivr.net),
     connect_src: ~w('self'),
     child_src: ~w('self'),
     img_src: ~w('self' data:),
     font_src: ~w('self' data: cdn.jsdelivr.net),
     script_src: ~w('self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net),
-    style_src: ~w('self')
+    style_src: ~w('self' 'unsafe-inline' cdn.jsdelivr.net)
   }

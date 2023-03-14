@@ -65,10 +65,10 @@ config :phoenix, :stacktrace_depth, 20
 config :plug_content_security_policy,
   report_only: false,
   directives: %{
-    connect_src: ~w('self'),
+    connect_src: ~w('self' cdn.jsdelivr.net),
     child_src: ~w('self'),
     font_src: ~w('self' data: cdn.jsdelivr.net),
     img_src: ~w('self' data:),
     script_src: ~w('self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net),
-    style_src: ~w('self' 'unsafe-inline')
+    style_src: ~w('self' 'unsafe-inline' cdn.jsdelivr.net)
   }
