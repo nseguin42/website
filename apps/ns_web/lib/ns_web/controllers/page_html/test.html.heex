@@ -3,9 +3,10 @@
 
 This page is written with a combination of markdown, LaTeX, and Elixir's EEx template engine.
 This particular block is written in Markdown:
-    - It
+- It
     - supports
-    - lists
+        - lists
+
 and **bold** and *italic* text. Here's the markdown that generated this block:
 """ %>
 
@@ -23,9 +24,11 @@ Here's the LaTeX that generated this block:
 
 This page is written with a combination of markdown, LaTeX, and Elixir's EEx template engine.
 This particular block is written in Markdown:
-    - It
+
+- It
     - supports
-    - lists
+        - lists
+
 and **bold** and *italic* text. Here's the markdown that generated this block:
 \"\"\" %\>
 
@@ -66,7 +69,7 @@ Here's the LaTeX that generated this block:
     <%= markdown |> NsWeb.Markdown.as_html() |> raw %>
   </div>
   <div>
-    <pre><code class="lang-markdown"><%= markdown %></code></pre>
+    <pre><code class="lang-markdown list-disc list-inside"><%= markdown %></code></pre>
   </div>
   <div style="border: 1px solid black; padding: 1em; margin: 1em;">
     <%= latex |> NsWeb.LaTeX.as_html() |> raw %>

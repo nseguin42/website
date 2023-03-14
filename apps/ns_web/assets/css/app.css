@@ -6,6 +6,25 @@
 
 @import 'prism-nord.css';
 
+:root {
+  scrollbar-gutter: stable;
+}
+
+.prose > ul {
+  list-style-type: disc;
+  margin-left: 1rem;
+}
+
+.prose > ul > li > ul {
+  list-style-type: circle;
+  margin-left: 1rem;
+}
+
+.prose > ul > li > ul > li > ul {
+  list-style-type: square;
+  margin-left: 1rem;
+}
+
 #nav-bar > a {
   color: #d8dee9;
 }
