@@ -33,7 +33,6 @@ config :swoosh, :api_client, false
 config :phoenix, :plug_init_mode, :runtime
 
 config :plug_content_security_policy,
-  nonces_for: [:script_src, :style_src],
   report_only: false,
   directives: %{
     default_src: ~w('self'),

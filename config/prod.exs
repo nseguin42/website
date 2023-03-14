@@ -19,7 +19,6 @@ config :logger, level: :info
 # of environment variables, is done on config/runtime.exs.
 
 config :plug_content_security_policy,
-  nonces_for: [:script_src, :style_src],
   report_only: false,
   directives: %{
     default_src: ~w('self'),
