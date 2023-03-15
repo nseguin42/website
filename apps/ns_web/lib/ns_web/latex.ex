@@ -65,7 +65,7 @@ defmodule NsWeb.LaTeX do
     html
   end
 
-  defp convert_string_to_html(string, css \\ "latex/base.css") do
+  defp convert_string_to_html(string, css \\ "latex/inline.css") do
     string
     |> to_inline_tex()
     |> write_tex_to_file()
