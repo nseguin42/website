@@ -55,8 +55,7 @@ targets:
 prepare:
 	echo $(GIT_REVISION) > sha.txt
 	mix deps.get
-	npm install
-	npm ci --prefix assets
+	cd assets && npm install
 
 .PHONY: build
 build: ## Build a Docker image for the OTP release
