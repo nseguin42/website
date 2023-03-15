@@ -3,12 +3,10 @@ ARG ELIXIR_VERSION=1.14.3
 ARG OTP_VERSION=25.3
 ARG DEBIAN_VERSION=bullseye-20230227-slim
 
-ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
-
+ARG BUILD_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
 ARG SHA
 
-FROM ${BUILDER_IMAGE} as builder
+FROM ${BUILD_IMAGE} as builder
 
 ENV SSL_KEY_PATH=/etc/certs/privkey.pem
 ENV SSL_CERT_PATH=/etc/certs/fullchain.pem
