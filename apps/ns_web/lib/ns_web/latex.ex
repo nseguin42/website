@@ -3,8 +3,6 @@ defmodule NsWeb.LaTeX do
   Converts LaTeX to HTML.
   """
 
-  import Logger
-
   @doc """
   Converts the given LaTeX string to HTML.
   """
@@ -46,14 +44,12 @@ defmodule NsWeb.LaTeX do
   end
 
   defp cache_then_get(html, cache_file) do
-    Logger.info("Saving LaTeX to cache: #{cache_file}")
     File.mkdir_p!(Path.dirname(cache_file))
     File.write!(cache_file, html)
     html
   end
 
   defp convert_tex_to_html(path, css \\ "latex/base.css") do
-    dir = target_dir()
     hash = get_hash(path |> Path.basename())
 
     html =
