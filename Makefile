@@ -60,7 +60,7 @@ prepare:
 .PHONY: build
 build: ## Build a Docker image for the OTP release
 	if [ -f build-image.tar ]; then \
-		docker load -i ./build-image.tar --tag $(APP_NAME):build ; \
+		docker load -i ./build-image.tar; \
 	else \
   		docker build --tag $(APP_NAME):build -f build.Dockerfile --output type=tar,dest=./build-image.tar . ; \
   	fi
