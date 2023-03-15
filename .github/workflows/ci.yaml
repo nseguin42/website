@@ -67,9 +67,9 @@ jobs:
       - uses: actions/cache/save@v3
         id: save-build-image
         if: steps.restore-build-image.outputs.cache-hit != 'true'
-        key: ${{ runner.os }}-build-image-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}
         with:
           path: build-image.tar
+          key: ${{ runner.os }}-build-image-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}
 
       - uses: actions/setup-node@v3
         with:
