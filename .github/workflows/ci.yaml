@@ -49,14 +49,8 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
-
-      - uses: actions/cache/restore@v3
-        id: restore-build-image
-        with:
-          path: |
             build-image.tar
-            key: ${{ runner.os }}-build-image-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/build-image.tar', github.workspace)) }}
+          key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
 
       - name: Create build image
         id: create-build-image
@@ -64,14 +58,6 @@ jobs:
         run: |
           docker build --rm -t build-image -f build.Dockerfile .
           docker save build-image > build-image.tar
-
-      - uses: actions/cache/save@v3
-        id: save-build-image
-        if: steps.restore-build-image.outputs.cache-hit != 'true'
-        with:
-          name: build-image
-          path: |
-            build-image.tar
 
       - uses: actions/setup-node@v3
         with:
