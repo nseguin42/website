@@ -55,6 +55,7 @@ targets:
 prepare:
 	echo $(GIT_REVISION) > sha.txt
 	mix deps.get
+	npm install
 	npm ci --prefix assets
 
 .PHONY: build
