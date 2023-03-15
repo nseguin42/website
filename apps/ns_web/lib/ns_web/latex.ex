@@ -69,7 +69,7 @@ defmodule NsWeb.LaTeX do
   end
 
   defp target_dir do
-    Application.app_dir(:ns_web) |> Path.join("latex")
+    System.tmp_dir!() |> Path.join("latex")
   end
 
   defp get_hash(string) do
