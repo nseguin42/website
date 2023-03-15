@@ -3,36 +3,81 @@ defmodule NsWeb.LaTeX do
   Converts LaTeX to HTML.
   """
 
+  import Logger
+
   @doc """
   Converts the given LaTeX string to HTML.
   """
   def as_html(string) do
-    tmp_dir = setup_tmp_dir("inline")
+    hash = get_hash(string)
+    cache_file = Path.join(target_dir(), "#{hash}/index.html")
 
-    html =
-      string
-      |> to_inline_tex()
-      |> write_tex_to_tmp(tmp_dir)
-      |> convert_tex_to_html("latex/inline.css")
+    case File.read(cache_file) do
+      {:ok, html} ->
+        html
 
-    teardown_tmp_dir(tmp_dir)
-    html
+      {:error, :enoent} ->
+        convert_string_to_html(string)
+        |> cache_then_get(cache_file)
+
+      _ ->
+        raise "Could not read #{cache_file}"
+    end
   end
 
   @doc """
   Converts the given .tex file to HTML.
   """
-  def convert_tex_to_html(path, css \\ "latex/base.css") do
-    tmp_dir = setup_tmp_dir(path)
+  def get_html_from_tex_file(path) do
+    hash = get_hash(path |> Path.basename())
+    cache_file = Path.join(target_dir(), "#{hash}/index.html")
+
+    case File.read(cache_file) do
+      {:ok, html} ->
+        html
+
+      {:error, :enoent} ->
+        convert_tex_to_html(path)
+        |> cache_then_get(cache_file)
+
+      _ ->
+        raise "Could not read #{cache_file}"
+    end
+  end
+
+  defp cache_then_get(html, cache_file) do
+    Logger.info("Saving LaTeX to cache: #{cache_file}")
+    File.mkdir_p!(Path.dirname(cache_file))
+    File.write!(cache_file, html)
+    html
+  end
+
+  defp convert_tex_to_html(path, css \\ "latex/base.css") do
+    dir = target_dir()
+    hash = get_hash(path |> Path.basename())
 
     html =
       path
-      |> convert_tex_to_xml(tmp_dir)
-      |> convert_xml_to_html(tmp_dir, css)
+      |> convert_tex_to_xml(hash)
+      |> convert_xml_to_html(css)
       |> File.read!()
 
-    teardown_tmp_dir(tmp_dir)
     html
+  end
+
+  defp convert_string_to_html(string, css \\ "latex/base.css") do
+    string
+    |> to_inline_tex()
+    |> write_tex_to_file()
+    |> convert_tex_to_html(css)
+  end
+
+  defp target_dir do
+    Application.app_dir(:ns_web) |> Path.join("latex")
+  end
+
+  defp get_hash(string) do
+    :crypto.hash(:md5, string) |> Base.encode16() |> String.slice(0..15)
   end
 
   defp to_inline_tex(string) do
@@ -47,9 +92,9 @@ defmodule NsWeb.LaTeX do
     """
   end
 
-  defp convert_tex_to_xml(path, tmp_dir) do
-    basename = Path.basename(path, ".tex")
-    output_path = Path.join(tmp_dir, "#{basename}.xml")
+  defp convert_tex_to_xml(path, hash) do
+    dir = target_dir()
+    output_path = Path.join(dir, "#{hash}/index.xml")
 
     command =
       ~s"""
@@ -69,31 +114,19 @@ defmodule NsWeb.LaTeX do
     end
   end
 
-  defp write_tex_to_tmp(string, tmp_dir) do
-    path = Path.join(tmp_dir, "tmp.tex")
+  defp write_tex_to_file(string) do
+    hash = get_hash(string)
+    dir = Path.join(target_dir(), hash)
+    File.mkdir_p!(dir)
+
+    path = Path.join(dir, "index.tex")
     File.write!(path, string)
     path
   end
 
-  defp setup_tmp_dir(path) do
-    salt = :crypto.strong_rand_bytes(16) |> Base.encode16() |> String.slice(0..7)
-
-    tmp_dir =
-      System.tmp_dir!()
-      |> Path.join("ns_web")
-      |> Path.join("latex")
-      |> Path.join(Path.basename(path) <> "-" <> salt)
-
-    File.mkdir_p!(tmp_dir)
-    tmp_dir
-  end
-
-  defp teardown_tmp_dir(tmp_dir) do
-    File.rm_rf!(tmp_dir)
-  end
-
-  defp convert_xml_to_html(path, tmp_dir, css) do
-    output_path = Path.join(tmp_dir, "index.html")
+  defp convert_xml_to_html(path, css) do
+    dir = Path.dirname(path)
+    output_path = Path.join(dir, "index.html")
 
     command =
       ~s"""
@@ -123,7 +156,7 @@ defmodule NsWeb.LaTeX do
 
     def compile(path, _name) do
       path
-      |> NsWeb.LaTeX.convert_tex_to_html()
+      |> NsWeb.LaTeX.get_html_from_tex_file()
       |> EEx.compile_string(engine: Phoenix.HTML.Engine, file: path, line: 1)
     end
   end
