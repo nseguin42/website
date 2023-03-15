@@ -43,12 +43,36 @@ jobs:
           version-type: strict
 
       - uses: actions/cache@v3
+        id: restore-cache
         with:
           path: |
             deps
             _build
             priv/plts
-          key: 01-${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+          key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+
+      - uses: actions/cache/restore@v3
+        id: restore-build-image
+        with:
+          path: |
+            build-image.tar
+            key: ${{ runner.os }}-build-image-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles(format('{0}/build-image.tar', github.workspace)) }}
+
+      - name: Create build image
+        id: create-build-image
+        if: steps.restore-build-image.outputs.cache-hit != 'true'
+        run: |
+          docker build --rm -t build-image -f build.Dockerfile .
+          docker save build-image > build-image.tar
+
+      - uses: actions/cache/save@v3
+        id: save-build-image
+        if: steps.restore-build-image.outputs.cache-hit != 'true'
+        needs: create-build-image
+        with:
+          name: build-image
+          path: |
+            build-image.tar
 
       - uses: actions/setup-node@v3
         with:
@@ -62,9 +86,8 @@ jobs:
       - run: make lint
       - run: make test
       - run: make build
-      - run: make docker-save
 
-      - name: Upload image
+      - name: Upload release image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v2
         with:
