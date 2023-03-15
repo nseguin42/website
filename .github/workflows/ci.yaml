@@ -68,7 +68,6 @@ jobs:
       - uses: actions/cache/save@v3
         id: save-build-image
         if: steps.restore-build-image.outputs.cache-hit != 'true'
-        needs: create-build-image
         with:
           name: build-image
           path: |
