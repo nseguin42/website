@@ -59,16 +59,9 @@ prepare:
 
 .PHONY: build
 build: ## Build a Docker image for the OTP release
-	if [ -f build-image.tar ]; then \
-		docker load -i ./build-image.tar; \
-	else \
-  		docker build --tag $(APP_NAME):build -f build.Dockerfile --output type=tar,dest=./build-image.tar . ; \
-  	fi
-	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . --build-arg SHA=$(GIT_REVISION) --build-arg BUILD_IMAGE=$(APP_NAME):build;
+	docker load -i ./build-image.tar
+	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . --build-arg SHA=$(GIT_REVISION) --build-arg BUILD_IMAGE=$(APP_NAME):build --output type=tar,dest=$(APP_NAME).tar
 
-.PHONY: docker-save
-docker-save: ## Save the Docker image to a tar file
-	docker save $(DOCKER_LOCAL_IMAGE) -o $(APP_NAME).tar
 
 # Development targets
 # -------------------
