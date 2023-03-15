@@ -61,7 +61,7 @@ prepare:
 build: ## Build a Docker image for the OTP release
 	docker load -i ./build-image.tar
 	docker build --rm --tag $(DOCKER_LOCAL_IMAGE) . --build-arg SHA=$(GIT_REVISION) --build-arg BUILD_IMAGE=build-image:latest
-	docker save -o $(DOCKER_FILENAME).tar $(APP_NAME).tar
+	docker save -o $(DOCKER_FILENAME).tar $(DOCKER_LOCAL_IMAGE)
 
 
 # Development targets
