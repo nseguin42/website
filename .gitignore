@@ -174,3 +174,4 @@ _checkouts/
 *.local
 docker-compose-prod.yml
 *.log
+build-image.tar
