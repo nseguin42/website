@@ -89,7 +89,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docker-image
-          path: website.tar
+          path: website-latest.tar
 
   deploy:
     name: Push Docker image to Docker Hub
@@ -111,7 +111,7 @@ jobs:
           name: docker-image
 
       - name: Load image
-        run: docker load --input website.tar
+        run: docker load --input website-latest.tar
 
       - name: Add Docker tags
         run: |
